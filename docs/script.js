@@ -1,61 +1,61 @@
 setTimeout(async () => {
   console.clear();
-  ReactDOM.render(
-  React.createElement(Threelium.SceneView, {
+  ReactDOM.render( /*#__PURE__*/React.createElement(Threelium.SceneView, {
     antialias: true,
-    camera:
-    React.createElement(Threelium.Camera, {
-      position: new THREE.Vector3(0, 0, 1) }) },
-
-
-
-  React.createElement(MainScene, null)),
-
-  document.getElementById('js-app'));
+    camera: /*#__PURE__*/React.createElement(Threelium.Camera, {
+      position: new THREE.Vector3(0, 0, 1)
+    })
+  }, /*#__PURE__*/React.createElement(MainScene, null)), document.getElementById('js-app'));
 }, 0);
 
 class MainScene extends Threelium.Scene {
-  initialize({})
-  {
-    return (
-      React.createElement(React.Fragment, null,
-      React.createElement(Threelium.AmbientLight, { color: 0xffffff }),
-      React.createElement(CutPaper, {
-        useColor: true,
-        useShadow: true,
-        useRelief: true })));
+  initialize({}) {
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Threelium.AmbientLight, {
+      color: 0xffffff
+    }), /*#__PURE__*/React.createElement(CutPaper, {
+      useColor: true,
+      useShadow: true,
+      useRelief: true
+    }));
+  }
 
-
-
-  }}
-
+}
 
 class CutPaper extends THREE.Mesh {
-  static createGeometry(
-  width,
-  height)
-  {
+  static createGeometry(width, height) {
     const geometry = new THREE.PlaneGeometry(width, height, 1, 1);
     return geometry;
   }
 
-  static createMaterial(
-  useColor,
-  useShadow,
-  useRelief)
-  {
+  static createMaterial(useColor, useShadow, useRelief) {
     return new Threelium.EnhancedMaterial({
       flatShading: false,
       uniforms: {
-        uTime: { value: 0 },
-        uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight).multiplyScalar(window.devicePixelRatio) },
-        uColor0: { value: colorThreshold(13, 9, 96, 0.0) },
-        uColor1: { value: colorThreshold(105, 64, 182, 0.16) },
-        uColor2: { value: colorThreshold(181, 61, 210, 0.32) },
-        uColor3: { value: colorThreshold(250, 90, 186, 0.48) },
-        uColor4: { value: colorThreshold(51, 207, 206, 0.64) },
-        uColor5: { value: colorThreshold(254, 230, 122, 0.8) } },
-
+        uTime: {
+          value: 0
+        },
+        uResolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight).multiplyScalar(window.devicePixelRatio)
+        },
+        uColor0: {
+          value: colorThreshold(13, 9, 96, 0.0)
+        },
+        uColor1: {
+          value: colorThreshold(105, 64, 182, 0.16)
+        },
+        uColor2: {
+          value: colorThreshold(181, 61, 210, 0.32)
+        },
+        uColor3: {
+          value: colorThreshold(250, 90, 186, 0.48)
+        },
+        uColor4: {
+          value: colorThreshold(51, 207, 206, 0.64)
+        },
+        uColor5: {
+          value: colorThreshold(254, 230, 122, 0.8)
+        }
+      },
       varyingParameters: [`
         varying vec2 vUv;
       `],
@@ -163,8 +163,8 @@ class CutPaper extends THREE.Mesh {
         ${useShadow ? `
           diffuseColor.rgb -= getShadow(point, 0.025, 0.08);
         ` : ''}
-      `] });
-
+      `]
+    });
   }
 
   constructor({
@@ -172,17 +172,10 @@ class CutPaper extends THREE.Mesh {
     height = 2,
     useColor = true,
     useShadow = true,
-    useRelief = true })
-  {
-    const geometry = CutPaper.createGeometry(
-    width,
-    height);
-
-    const material = CutPaper.createMaterial(
-    useColor,
-    useShadow,
-    useRelief);
-
+    useRelief = true
+  }) {
+    const geometry = CutPaper.createGeometry(width, height);
+    const material = CutPaper.createMaterial(useColor, useShadow, useRelief);
     super(geometry, material);
   }
 
@@ -197,12 +190,10 @@ class CutPaper extends THREE.Mesh {
 
   set time(newTime) {
     this.material.uniforms.uTime.value = newTime;
-  }}
+  }
 
+}
 
 function colorThreshold(r, g, b, threshold) {
-  return [
-  ...[r, g, b].map(i => i / 255),
-  threshold];
-
+  return [...[r, g, b].map(i => i / 255), threshold];
 }

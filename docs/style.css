@@ -1,10 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #3c3c3f;
-}
+  background-color: #3c3c3f; }
 
 .c-react-canvas {
   display: block;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
